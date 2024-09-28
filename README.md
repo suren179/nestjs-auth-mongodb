@@ -17,7 +17,7 @@ This is a backend application built using [NestJS](https://nestjs.com/) & MongoD
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-repo/nestjs-app.git
+    git clone https://github.com/suren179/nestjs-auth-mongodb.git
     ```
 
 2. Navigate into the project directory:
