@@ -13,12 +13,6 @@ import { AppService } from './app.service';
 import { WinstonModule } from 'nest-winston';
 @Module({
 	imports: [
-		WinstonModule.forRootAsync({
-			useFactory: () => ({
-				// options
-			}),
-			inject: [],
-		}),
 		ConfigModule.forRoot({
 			load: [appConfig, jwtConfig, databaseConfig], // Load the configuration files
 			isGlobal: true, // Make the config globally available
