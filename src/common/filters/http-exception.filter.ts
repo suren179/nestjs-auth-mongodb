@@ -22,7 +22,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
 				? exception.getResponse()
 				: exception['message'] || 'Internal Server Error';
 
-		Logger.error(
+		Logger.log(
+			'error',
 			`HttpException: ${exception}. ErrorMessage: ${errorMessage}`,
 		);
 		response.status(status).json({
