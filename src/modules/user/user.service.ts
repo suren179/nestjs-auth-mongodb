@@ -35,18 +35,14 @@ export class UserService {
 		id: string,
 		updateUser: UpdateUserDto,
 	): Promise<UserInfoResponse> {
-		const user = await this.userModel
-			.findById(id)
-			.select('-password')
-			.exec();
+		const user = await this.userModel.findByIdAndUpdate(
+			id,
+			{ $set: updateUser }, // Use $set to only update the fields provided
+			{ new: true, select: '-password', runValidators: true }, // new: true as we need latest data
+		);
 		if (!user) {
 			throw new NotFoundException('User not found');
 		}
-		for (const key in updateUser) {
-			user[key] = updateUser[key];
-		}
-		await user.save(); // Save the updated user to the database
-
 		return user;
 	}
 
@@ -58,17 +54,16 @@ export class UserService {
 			throw new BadRequestException('New password is same as old one');
 		}
 		if (this.authService.validatePassword(changePassword.newPassword)) {
-			const user = await this.userModel.findById(id);
+			const user = await this.userModel.findById(id).select('password');
 			if (!user || !user.password) {
 				throw new NotFoundException('User not found');
 			}
+			const isOldPasswordValid = await this.authService.verifyPassword(
+				changePassword.oldPassword,
+				user.password,
+			);
 
-			if (
-				!(await this.authService.verifyPassword(
-					changePassword.oldPassword,
-					user.password,
-				))
-			) {
+			if (!isOldPasswordValid) {
 				throw new BadRequestException('Wrong Old Password');
 			}
 
@@ -77,9 +72,12 @@ export class UserService {
 					changePassword.newPassword,
 					10,
 				);
-			user.password = hashedNewPassword;
-			await user.save(); // Save the updated user to the database
 
+			await this.userModel.findByIdAndUpdate(
+				id,
+				{ password: hashedNewPassword },
+				{ new: false }, // new: false as we don't need updated document after update
+			);
 			return {
 				message: 'Password changed successfully',
 			};
