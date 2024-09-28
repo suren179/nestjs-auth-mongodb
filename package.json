@@ -1,5 +1,5 @@
 {
-	"name": "nestjs-auth",
+	"name": "nestjs-auth-mongodb",
 	"version": "0.0.1",
 	"description": "",
 	"author": "Surendra Borana",
