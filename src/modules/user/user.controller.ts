@@ -13,8 +13,8 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { UserInfoResponse } from './dtos/user-info.response.dto';
 import { ChangePasswordDto } from './dtos/change-password.dto';
-import { SuccessMessageResponseDto } from 'src/common/dtos/success-message-response.dto';
-import { GlobalErrorResponseDto } from 'src/common/dtos/global-error-response.dto';
+import { SuccessMessageResponseDto } from '../../common/dtos/success-message-response.dto';
+import { GlobalErrorResponseDto } from '../../common/dtos/global-error-response.dto';
 
 @ApiTags('User')
 @Controller('users')
