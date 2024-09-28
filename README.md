@@ -7,10 +7,12 @@ This is a backend application built using [NestJS](https://nestjs.com/) & MongoD
 ## Features
 
 -   REST API
--   User authentication (JWT)
+-   User authentication (JWT: access token & refresh token)
 -   MongoDB Integration (Mongoose)
 -   Input validation
 -   Error handling
+-   Logging (File/Console)
+-   Cors, CSP, Throttling,
 
 ## Installation
 
@@ -23,7 +25,7 @@ This is a backend application built using [NestJS](https://nestjs.com/) & MongoD
 2. Navigate into the project directory:
 
     ```bash
-    cd nestjs-app
+    cd nestjs-auth-mongodb
     ```
 
 3. Install the dependencies:
