@@ -61,7 +61,7 @@ async function bootstrap() {
 						defaultSrc: ["'self'"],
 						scriptSrc: ["'self'"], //, process.env.CORS_ORIGIN], // Allow scripts from trusted CDN
 						objectSrc: ["'none'"], // Disallow all object sources
-						//upgradeInsecureRequests: [], // Automatically upgrade HTTP to HTTPS (enable it if using ENABLE_HTTPS as true)
+						upgradeInsecureRequests: [], // Automatically upgrade HTTP to HTTPS (enable it if using ENABLE_HTTPS as true)
 					},
 				},
 				crossOriginResourcePolicy: { policy: 'same-origin' },
