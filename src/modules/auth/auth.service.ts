@@ -4,6 +4,7 @@ import {
 	BadRequestException,
 	NotFoundException,
 	ConflictException,
+	Logger,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -90,7 +91,7 @@ export class AuthService {
 				sub: jwtPayload.sub,
 			};
 		} catch (error) {
-			console.error(error);
+			Logger.error(error);
 			throw new UnauthorizedException('Invalid refresh token');
 		}
 	}
@@ -124,7 +125,7 @@ export class AuthService {
 				refreshToken: refreshTokenDto.refreshToken,
 			};
 		} catch (e) {
-			console.error(e);
+			Logger.error(e);
 			throw new UnauthorizedException();
 		}
 	}
