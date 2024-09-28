@@ -58,15 +58,24 @@ export class AuthService {
 	}
 
 	private generateAccessToken(payload: any) {
-		return this.jwtService.sign(payload);
+		return this.jwtService.sign(payload, {
+			expiresIn:
+				this.configService.get<string>('jwt.accessToken.expiresIn') ||
+				'2m',
+			secret:
+				this.configService.get<string>('jwt.accessToken.secret') ||
+				'test-key',
+		});
 	}
 
 	private generateRefreshToken(payload: any) {
 		return this.jwtService.sign(payload, {
-			expiresIn: this.configService.get<string>(
-				'jwt.refreshToken.expiresIn',
-			),
-			secret: this.configService.get<string>('jwt.refreshToken.secret'), // Use a different secret for refresh token
+			expiresIn:
+				this.configService.get<string>('jwt.refreshToken.expiresIn') ||
+				'2m',
+			secret:
+				this.configService.get<string>('jwt.refreshToken.secret') ||
+				'test-key', // Use a different secret for refresh token
 		});
 	}
 	private generateAccessAndRefreshToken(user: User): AuthResponseDto {
@@ -82,9 +91,9 @@ export class AuthService {
 	private async validateRefreshToken(refreshToken: string): Promise<any> {
 		try {
 			const jwtPayload = await this.jwtService.verifyAsync(refreshToken, {
-				secret: this.configService.get<string>(
-					'jwt.refreshToken.secret',
-				),
+				secret:
+					this.configService.get<string>('jwt.refreshToken.secret') ||
+					'test-key',
 			});
 			return {
 				email: jwtPayload.email,

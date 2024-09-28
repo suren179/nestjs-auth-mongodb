@@ -15,6 +15,7 @@ import { UserInfoResponse } from './dtos/user-info.response.dto';
 import { ChangePasswordDto } from './dtos/change-password.dto';
 import { SuccessMessageResponseDto } from '../../common/dtos/success-message-response.dto';
 import { GlobalErrorResponseDto } from '../../common/dtos/global-error-response.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 
 @ApiTags('User')
 @Controller('users')
@@ -44,7 +45,7 @@ export class UserController {
 		description: 'Update User Information',
 		type: UserInfoResponse,
 	})
-	async updateUser(@Request() req, @Body() updateUser: UserInfoResponse) {
+	async updateUser(@Request() req, @Body() updateUser: UpdateUserDto) {
 		// The userId was set in the JwtStrategy
 		return this.userService.updateUser(req.user.userId, updateUser);
 	}
