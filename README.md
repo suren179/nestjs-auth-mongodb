@@ -87,7 +87,7 @@ npm run start:prod
 ## API Endpoints
 
 -   **POST** `/auth/sign-up` – Sign up a new user
--   **POST** `/auth/log-in` – Login a user
+-   **POST** `/auth/sign-in` – Login a user
 -   **POST** `/auth/refresh-token` – Get access token from refresh token
 -   **GET** `/users/me` – Get Logged in user's information
 -   **PUT** `/users/me` – Update Logged in user's information
