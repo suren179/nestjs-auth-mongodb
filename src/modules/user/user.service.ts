@@ -24,9 +24,9 @@ export class UserService {
 		return newUser.save();
 	}
 
-	async findAllUsers() {
-		return this.userModel.find().select('-password').exec();
-	}
+	// async findAllUsers() {
+	// 	return this.userModel.find().select('-password').exec();
+	// }
 	async getUserById(id: string): Promise<UserInfoResponse> {
 		return this.userModel.findById(id).select('-password').exec();
 	}
