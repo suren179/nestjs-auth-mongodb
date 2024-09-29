@@ -17,8 +17,8 @@ import { RefreshTokenDto } from './dtos/refresh-token.dto';
 import { ChangePasswordDto } from './dtos/change-password.dto';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { AuthResponseDto } from './dtos/auth.response.dto';
-import { GlobalErrorResponseDto } from 'src/common/dtos/global-error-response.dto';
-import { SuccessMessageResponseDto } from 'src/common/dtos/success-message-response.dto';
+import { GlobalErrorResponseDto } from '../../common/dtos/global-error-response.dto';
+import { SuccessMessageResponseDto } from '../../common/dtos/success-message-response.dto';
 
 @ApiTags('Authentication')
 @Controller('auth')

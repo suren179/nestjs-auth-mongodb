@@ -35,8 +35,8 @@ function createWinstonLogger() {
 		maxSize: process.env.LOG_FILE_MAX_SIZE || '20m',
 		format: fileLogFormat,
 	});
-	const errorLogFileTransport = new winston.transports.DailyRotateFile({
-		filename: `${logDirectory}/error-logs/error-%DATE%.log`,
+	const exceptionLogFileTransport = new winston.transports.DailyRotateFile({
+		filename: `${logDirectory}/exception-logs/exception-%DATE%.log`,
 		datePattern: 'YYYY-MM-DD',
 		maxSize: process.env.LOG_FILE_MAX_SIZE || '20m',
 		format: fileLogFormat,
@@ -45,8 +45,9 @@ function createWinstonLogger() {
 		// options of Winston
 		level: logLevel,
 		transports: [consoleTransport, debugLogFileTransport],
-		exceptionHandlers: [consoleTransport, errorLogFileTransport],
-		rejectionHandlers: [consoleTransport, errorLogFileTransport],
+		//This will only activate & log when there is an uncaught exception, ensuring that the application does not crash due to these errors (exitOnError: false).
+		exceptionHandlers: [consoleTransport, exceptionLogFileTransport],
+		rejectionHandlers: [consoleTransport, exceptionLogFileTransport],
 		exitOnError: false,
 	});
 

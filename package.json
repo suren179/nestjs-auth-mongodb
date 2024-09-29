@@ -17,7 +17,7 @@
 		"test:watch": "jest --watch",
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-		"test:e2e": "jest --config ./test/jest-e2e.json"
+		"test:e2e": "jest --config ./test/jest-e2e.json  --runInBand"
 	},
 	"dependencies": {
 		"@nestjs/common": "^10.0.0",
@@ -34,6 +34,7 @@
 		"class-validator": "^0.14.1",
 		"dotenv": "^16.4.5",
 		"helmet": "^7.1.0",
+		"mongodb-memory-server": "^10.0.1",
 		"mongoose": "^8.6.4",
 		"nest-winston": "^1.9.7",
 		"nestjs-rate-limiter": "^3.1.0",
@@ -85,6 +86,10 @@
 			"**/*.(t|j)s"
 		],
 		"coverageDirectory": "../coverage",
-		"testEnvironment": "node"
+		"testEnvironment": "node",
+		"setupFilesAfterEnv": [
+			"../test/setup/global-setup.ts"
+		],
+		"verbose": true
 	}
 }

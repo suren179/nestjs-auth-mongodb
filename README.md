@@ -2,28 +2,31 @@
 
 ## Description
 
-This is a backend application built using [NestJS](https://nestjs.com/) & MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
+This is a backend application built using [NestJS](https://nestjs.com/) &
+MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
 
 ## Features
 
 -   REST API
--   User authentication (JWT)
+-   User authentication (JWT: access token & refresh token)
 -   MongoDB Integration (Mongoose)
 -   Input validation
 -   Error handling
+-   Logging (File/Console)
+-   Cors, CSP, Throttling,
 
 ## Installation
 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-repo/nestjs-app.git
+    git clone https://github.com/suren179/nestjs-auth-mongodb.git
     ```
 
 2. Navigate into the project directory:
 
     ```bash
-    cd nestjs-app
+    cd nestjs-auth-mongodb
     ```
 
 3. Install the dependencies:
@@ -94,7 +97,8 @@ npm run test
 ## Documentation
 
 The API is documented using [Swagger](https://swagger.io/). After starting the
-app, navigate to `/api` to view the API documentation.
+app, navigate to `/api` ( [Local Https Swagger](https://localhost:3000/api) or
+[Local Http Swagger](http://localhost:3000/api) ) to view the API documentation.
 
 ## License
 
