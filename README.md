@@ -12,8 +12,11 @@ MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
 -   MongoDB Integration (Mongoose)
 -   Input validation
 -   Error handling
+-   Api Throttling, Security
+-   Password Salted and Hashed
 -   Logging (File/Console)
--   Cors, CSP, Throttling,
+-   Cors, CSP, Api Throttling, Api Security ()
+-   Unit test cases and E2E tests
 
 ## Installation
 
@@ -66,7 +69,10 @@ The app will be running at https://localhost:3000 or http://localhost:3000
 (based on ENABLE_HTTPS env).
 
 To enable HTTPS in production we need to get CA authorized certificate files and
-place these in ./ssl-certs directory (Self signed ones are already included)
+place these in ./ssl-certs directory (Self signed ones are already included).
+
+Please remember to accept self signed certificates for server app (this app
+[https://localhost:3000]) before accessing companion web app
 
 ## Running the Application in Production
 
@@ -88,10 +94,16 @@ npm run start:prod
 
 ## Testing
 
-To run tests:
+To run unit test tests:
 
 ```bash
 npm run test
+```
+
+To run end to end tests:
+
+```bash
+npm run test:e2e
 ```
 
 ## Documentation
