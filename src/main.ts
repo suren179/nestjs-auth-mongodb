@@ -59,13 +59,19 @@ async function bootstrap() {
 				contentSecurityPolicy: {
 					directives: {
 						defaultSrc: ["'self'"],
-						scriptSrc: ["'self'"], //, process.env.CORS_ORIGIN], // Allow scripts from trusted CDN
+						scriptSrc: ["'self'", process.env.CORS_ORIGIN], // Allow scripts from trusted CDN
 						objectSrc: ["'none'"], // Disallow all object sources
 						upgradeInsecureRequests: [], // Automatically upgrade HTTP to HTTPS (enable it if using ENABLE_HTTPS as true)
 					},
 				},
+				frameguard: { action: 'sameorigin' }, /// (X-Frame-Options)
+				xssFilter: true, // Enable XSS filtering (X-XSS-Protection: Depreciated In Chrome)
 				crossOriginResourcePolicy: { policy: 'same-origin' },
 				referrerPolicy: { policy: 'no-referrer' },
+				hsts: {
+					maxAge: 31536000, // Enforce HSTS for 1 year
+					includeSubDomains: true,
+				},
 			}),
 		);
 

@@ -78,7 +78,7 @@ export class AuthService {
 				'test-key', // Use a different secret for refresh token
 		});
 	}
-	private generateAccessAndRefreshToken(user: User): AuthResponseDto {
+	private generateAccessAndRefreshToken(user: any): AuthResponseDto {
 		const payload = { email: user.email, sub: user._id };
 		const accessToken = this.generateAccessToken(payload);
 		const refreshToken = this.generateRefreshToken(payload);
@@ -106,10 +106,12 @@ export class AuthService {
 	}
 
 	async signIn(loginDto: SignInDto): Promise<AuthResponseDto> {
-		const user = await this.userModel.findOne({
-			email: loginDto.email,
-		});
-
+		let user = await this.userModel.findOne(
+			{
+				email: loginDto.email,
+			},
+			'email _id password',
+		);
 		if (!user) {
 			throw new NotFoundException('User not registered');
 		}
