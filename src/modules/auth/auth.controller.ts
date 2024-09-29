@@ -5,6 +5,7 @@ import {
 	UseGuards,
 	Request,
 	HttpCode,
+	Get,
 } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 
@@ -29,7 +30,7 @@ export class AuthController {
 	) {}
 
 	//Accept max 5 requests per 15 minutes
-	@Throttle({ default: { limit: 5, ttl: 900000 } })
+	//@Throttle({ default: { limit: 5, ttl: 900000 } })
 	@Post('sign-in')
 	@HttpCode(200)
 	@ApiOperation({ summary: 'Sign In' })
@@ -51,7 +52,7 @@ export class AuthController {
 	}
 
 	//Accept max 5 requests per 15 minutes
-	@Throttle({ default: { limit: 5, ttl: 900000 } })
+	//@Throttle({ default: { limit: 5, ttl: 900000 } })
 	@Post('sign-up')
 	@HttpCode(201)
 	@ApiOperation({ summary: 'Sign Up' })
@@ -73,7 +74,7 @@ export class AuthController {
 	}
 
 	//Accept max 5 requests per 15 minutes
-	@Throttle({ default: { limit: 5, ttl: 900000 } })
+	//@Throttle({ default: { limit: 5, ttl: 900000 } })
 	@Post('refresh-token')
 	@HttpCode(200)
 	@ApiOperation({ summary: 'Get Access Token From Refresh Token' })
@@ -94,5 +95,28 @@ export class AuthController {
 		@Body() refreshTokenDto: RefreshTokenDto,
 	): Promise<AuthResponseDto> {
 		return this.authService.refreshToken(refreshTokenDto);
+	}
+
+	@Get('')
+	@HttpCode(200)
+	@UseGuards(JwtAuthGuard)
+	@ApiOperation({ summary: 'Verify User Authentication (If token is valid)' })
+	@ApiBody({
+		type: RefreshTokenDto,
+	})
+	@ApiResponse({
+		status: 200,
+		description: 'User Is Authenticated',
+		type: SuccessMessageResponseDto,
+	})
+	@ApiResponse({
+		status: 401,
+		description: 'User Is Not Authenticated',
+		type: GlobalErrorResponseDto,
+	})
+	async auth(): Promise<SuccessMessageResponseDto> {
+		return {
+			message: 'User Is Authenticated',
+		};
 	}
 }
