@@ -14,7 +14,7 @@ MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
 -   Error handling
 -   Api Throttling, Security
 -   Password Salted and Hashed
--   Logging (File/Console)
+-   Configurable Logging (File/Console with log rotating)
 -   Cors, CSP, Api Throttling, Api Security ()
 -   Unit test cases and E2E tests
 
@@ -41,17 +41,17 @@ MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
 ## Environment Variables
 
 Create a .env file in the root directory and add the following variables (or
-refer to .env.example):
+refer to .env.example): CORS_ORIGIN: Is the UI app origin
 
     PORT=3000
     MONGODB_URL=mongodb://localhost:27017/auth
-    JWT_ACCESS_TOKEN_SECRET=XYZ
+    JWT_ACCESS_TOKEN_SECRET=ec538028ed699a2ed464f54df56f3699a33a6363c764ac5252bc2be188b40de9
     JWT_ACCESS_TOKEN_EXPIRES_IN=15m
-    JWT_REFRESH_TOEKN_SECRET=ABC
+    JWT_REFRESH_TOEKN_SECRET=51c5d16f61d9969c11d7cb1170edb5d088b5ab6fcf8bfd8fdbc16e82731abe9b
     JWT_REFRESH_TOKEN_EXPIRES_IN=7d
-    THROTTLE_TTL=60000  # 1 minutes
-    THROTTLE_LIMIT=20   # 20 requests per ttl
-    CORS_ORIGIN=http://localhost:3000
+    THROTTLE_TTL=900000  # 15 minutes
+    THROTTLE_LIMIT=100   # 100 requests per ttl
+    CORS_ORIGIN=https://localhost:3001
     LOG_LEVEL=verbose
     LOG_DIR=./logs
     LOG_FILE_MAX_SIZE=20m
