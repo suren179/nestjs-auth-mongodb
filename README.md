@@ -17,6 +17,7 @@ MongoDB, it provides backend endpoints for user sign-up, sign-in etc.
 -   Configurable Logging (File/Console with log rotating)
 -   Cors, CSP, Api Throttling, Api Security ()
 -   Unit test cases and E2E tests
+-   Swagger API Documentation
 
 ## Installation
 
