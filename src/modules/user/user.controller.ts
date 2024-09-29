@@ -50,13 +50,13 @@ export class UserController {
 		return this.userService.updateUser(req.user.userId, updateUser);
 	}
 
-	@Get('')
-	@UseGuards(JwtAuthGuard)
-	@ApiOperation({ summary: 'Get All Users' })
-	@HttpCode(200)
-	async getAllUser() {
-		return this.userService.findAllUsers();
-	}
+	// @Get('')
+	// @UseGuards(JwtAuthGuard)
+	// @ApiOperation({ summary: 'Get All Users' })
+	// @HttpCode(200)
+	// async getAllUser() {
+	// 	return this.userService.findAllUsers();
+	// }
 
 	@UseGuards(JwtAuthGuard)
 	@Post('/me/change-password')
